@@ -1,0 +1,203 @@
+ file-1:Library.java
+
+package librarymanagement;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Library {
+    private List<LibraryItem> items;
+    private List<User> users;
+
+    public Library() {
+        items = new ArrayList<>();
+        users = new ArrayList<>();
+        loadData();
+    }
+
+    public void addItem(LibraryItem item) {
+        items.add(item);
+        saveData();
+    }
+
+    public void removeItem(LibraryItem item) {
+        items.remove(item);
+        saveData();
+    }
+
+    public List<LibraryItem> searchByTitle(String title) {
+        List<LibraryItem> result = new ArrayList<>();
+        for (LibraryItem item : items) {
+            if (item.getTitle().equalsIgnoreCase(title)) {
+                result.add(item);
+            }
+        }
+        return result;
+    }
+
+    public List<LibraryItem> searchByAuthor(String author) {
+        List<LibraryItem> result = new ArrayList<>();
+        for (LibraryItem item : items) {
+            if (item.getAuthor().equalsIgnoreCase(author)) {
+                result.add(item);
+            }
+        }
+        return result;
+    }
+
+    public List<LibraryItem> searchByCategory(String category) {
+        List<LibraryItem> result = new ArrayList<>();
+        for (LibraryItem item : items) {
+            if (item.getCategory().equalsIgnoreCase(category)) {
+                result.add(item);
+            }
+        }
+        return result;
+    }
+
+    public void addUser(User user) {
+        users.add(user);
+        saveData();
+    }
+
+    public User authenticateUser(String username, String password) {
+        for (User user : users) {
+            if (user.getUsername().equals(username) && user.authenticate(password)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    private void saveData() {
+        // Implement file saving logic here
+    }
+
+    private void loadData() {
+        // Implement file loading logic here
+    }
+}
+
+
+
+
+file-2:Librarian.java
+
+package librarymanagement;
+
+public class Librarian extends User {
+    public Librarian(String username, String password) {
+        super(username, password);
+    }
+}
+
+ class Patron extends User {
+    public Patron(String username, String password) {
+        super(username, password);
+    }
+}
+
+
+
+
+file-3:User.java
+
+package librarymanagement;
+
+public abstract class User {
+    private String username;
+    private String password;
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public boolean authenticate(String password) {
+        return this.password.equals(password);
+    }
+}
+
+
+
+
+
+file-4:Book.java
+
+
+package librarymanagement;
+
+public class Book extends LibraryItem {
+    public Book(String title, String author, String category) {
+        super(title, author, category);
+    }
+}
+
+ class Magazine extends LibraryItem {
+    public Magazine(String title, String author, String category) {
+        super(title, author, category);
+    }
+}
+
+ class DVD extends LibraryItem {
+    public DVD(String title, String author, String category) {
+        super(title, author, category);
+    }
+}
+
+
+
+
+
+
+file-5:LibraryItem.java
+
+
+package librarymanagement;
+
+public abstract class LibraryItem {
+    private String title;
+    private String author;
+    private String category;
+    private boolean checkedOut;
+
+    public LibraryItem(String title, String author, String category) {
+        this.title = title;
+        this.author = author;
+        this.category = category;
+        this.checkedOut = false;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public boolean isCheckedOut() {
+        return checkedOut;
+    }
+
+    public void setCheckedOut(boolean checkedOut) {
+        this.checkedOut = checkedOut;
+    }
+
+    @Override
+    public String toString() {
+        return "Title: " + title + ", Author: " + author + ", Category: " + category + ", Checked Out: " + checkedOut;
+    }
+}
+
+
+
+
