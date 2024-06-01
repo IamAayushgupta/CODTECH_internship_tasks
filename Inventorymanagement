@@ -1,4 +1,4 @@
-file-1:InventoryManagement
+file-1:InventoryManagement.java
 
 package Inventarymanagement;
 
@@ -53,7 +53,7 @@ public class InventoryManagement {
 
 
 
-file-2:InventoryManagementSystem
+file-2:InventoryManagementSystem.java
 
 package Inventarymanagement;
 
@@ -223,7 +223,7 @@ public class InventoryManagementSystem extends JFrame {
 
 
 
-file-3:Product
+file-3:Product.java
 
 
 package Inventarymanagement;
@@ -279,7 +279,7 @@ public class Product {
 
 
 
-file-4:UserAuthentication
+file-4:UserAuthentication.java
 
 
 
